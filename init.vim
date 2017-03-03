@@ -12,9 +12,6 @@ endif
 
 set runtimepath+=/home/timfiedler/.config/nvim/bundle//repos/github.com/Shougo/dein.vim
 
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/bin/python3'
-
 
 if dein#load_state('/home/timfiedler/.config/nvim/bundle/')
   call dein#begin('/home/timfiedler/.config/nvim/bundle/')
