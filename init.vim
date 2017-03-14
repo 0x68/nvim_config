@@ -35,10 +35,12 @@ if dein#load_state('/home/timfiedler/.config/nvim/bundle/')
   call dein#add('noahfrederick/vim-composer')
   call dein#add('noahfrederick/vim-laravel')
   call dein#add('roxma/nvim-completion-manager')
+  call dein#add('autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'})
   call dein#add('roxma/nvim-cm-tern',  {'do': 'npm install'})
   call dein#add('roxma/nvim-cm-php-language-server',  {'do': 'composer install && composer run-script parse-stubs'})
   call dein#add('roxma/python-support.nvim')
   call dein#add('brooth/far.vim')
+  call dein#add('airblade/vim-gitgutter')
   " You can specify revision/branch/tag.
   call dein#add('donRaphaco/neotex')
   call dein#add('hkupty/iron.nvim')
@@ -116,12 +118,41 @@ set shiftwidth=4
   au FileType py set textwidth=79 " PEP-8 Friendly
 
 
-let g:python_host_prog = "/home/timfiedler/.config/nvim/bundle/.cache/init.vim/.dein/autoload/nvim_py2/bin/python2"
-let g:python3_host_prog = "/home/timfiedler/.config/nvim/bundle/.cache/init.vim/.dein/autoload/nvim_py3/bin/python3"
+"let g:python_host_prog = /usr/bin/python"
+"let g:python3_host_prog = /usr/bin/python3"
 
 let g:deoplete#enable_at_startup = 1
+let g:python_support_python3_require=0
+let g:python_support_python2_require=0
 
 let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
 let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mistune')
 let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
 let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
+
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+let g:UtilSnipsExpandTrigger        = "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger   = "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpBackwardTrigger  = "<Plug>(ultisnips_backward)"
+let g:UltiSnipsListSnippets         = "<Plug>(ultisnips_list)"
+let g:UltiSnipsRemoveSelectModeMappings = 0 
+
+vnoremap <expr> <Plug>(ultisnip_expand_or_jump_result) g:ulti_expand_or_jump_res?'':"\<Tab>"
+inoremap <expr> <Plug>(ultisnip_expand_or_jump_result) g:ulti_expand_or_jump_res?'':"\<Tab>"
+imap <silent> <expr> <Tab> (pumvisible() ? "\<C-n>" : "\<C-r>=UltiSnips#ExpandSnippetOrJump()\<cr>\<Plug>(ultisnip_expand_or_jump_result)")
+xmap <Tab> <Plug>(ultisnips_expand)
+smap <Tab> <Plug>(ultisnips_expand)
+
+vnoremap <expr> <Plug>(ultisnips_backwards_result) g:ulti_jump_backwards_res?'':"\<S-Tab>"
+inoremap <expr> <Plug>(ultisnips_backwards_result) g:ulti_jump_backwards_res?'':"\<S-Tab>"
+imap <silent> <expr> <S-Tab> (pumvisible() ? "\<C-p>" : "\<C-r>=UltiSnips#JumpBackwards()\<cr>\<Plug>(ultisnips_backwards_result)")
+xmap <S-Tab> <Plug>(ultisnips_backward)
+smap <S-Tab> <Plug>(ultisnips_backward)
+
+" optional mapping provided by NCM. If you press `<c-u>` and nothing has been
+" typed, it will popup a list of snippets available
+inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
+
+
+
