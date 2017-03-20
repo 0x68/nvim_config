@@ -46,6 +46,18 @@ if dein#load_state('/home/timfiedler/.config/nvim/bundle/')
   call dein#add('hkupty/iron.nvim')
   call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
   call dein#add('scrooloose/nerdtree')
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('mxw/vim-jsx')
+  call dein#add('maxmellon/vim-jsx-pretty')
+  call dein#add('nvie/vim-flake8')
+  call dein#add('tpope/vim-surround')
+  call dein#add('majutsushi/tagbar')
+  call dein#add('SirVer/ultisnips')
+  call dein#add('honza/vim-snippets')
+  "  call dein#add('python-mode/python-mode')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('fatih/vim-go')
+  call dein#add('elixir-lang/vim-elixir')
   " Required:
   call dein#end()
   call dein#save_state()
@@ -154,5 +166,5 @@ smap <S-Tab> <Plug>(ultisnips_backward)
 " typed, it will popup a list of snippets available
 inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
 
-
+autocmd BufWritePost *.py call Flake8()
 
