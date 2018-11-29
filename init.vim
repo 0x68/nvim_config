@@ -10,15 +10,15 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-set runtimepath+=/home/timfiedler/.config/nvim/bundle//repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME .config/nvim/bundle//repos/github.com/Shougo/dein.vim
 
 
-if dein#load_state('/home/timfiedler/.config/nvim/bundle/')
-  call dein#begin('/home/timfiedler/.config/nvim/bundle/')
+if dein#load_state($HOME.".config/nvim/bundle/")
+  call dein#begin($HOME. ".config/nvim/bundle/")
 
   " Let dein manage dein
   " Required:
-  call dein#add('/home/timfiedler/.config/nvim/bundle//repos/github.com/Shougo/dein.vim')
+  call dein#add($HOME.'.config/nvim/bundle//repos/github.com/Shougo/dein.vim')
   call dein#add('Shougo/deoplete.nvim')
   call deoplete#enable()
   " Add or remove your plugins here:
